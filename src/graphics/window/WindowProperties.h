@@ -10,7 +10,7 @@ namespace broEngine {
 		{
 			//properties
 		public:
-			WindowProperties(bool closed, std::string title, int height, int width);
+			WindowProperties(bool closed, std::string title, int width, int height);
 			bool m_Closed;
 			std::string m_Title;
 		private:

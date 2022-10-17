@@ -2,8 +2,8 @@
 
 #include <iostream>
 
-void WindowCallbacks::OnResize(GLFWwindow* W, int width, int height)
+void WindowCallbacks::OnResize(GLFWwindow* window, int width, int height)
 {
-	glfwGetFramebufferSize(W, &width, &height);
+	glfwGetFramebufferSize(window, &width, &height);
 	glViewport(0, 0, width, height);
 }

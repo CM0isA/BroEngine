@@ -1,4 +1,5 @@
 #include "Window.h"
+#include "window_callbacks.h"
 
 namespace broEngine {
 	namespace graphics {
@@ -38,18 +39,10 @@ namespace broEngine {
 				return false;
 			}
 			glfwMakeContextCurrent(m_WindowData->handle); //Use the window
+			glfwSetWindowSizeCallback(m_WindowData->handle, WindowCallbacks::OnResize);
 			return true;
 		}
-
-		void Window::SetSize(int width, int height)
-		{
-			int frameBufferWidth, frameBufferHeight;
-			//glfwGetFramebufferSize(window->handle, &frameBufferWidth, &frameBufferHeight);
-
-		}
-
-
-		
+	
 
 		void Window::clear() const
 		{
