@@ -2,6 +2,7 @@
 
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include "WindowProperties.h"
 
 namespace broEngine {
 	namespace graphics {
@@ -11,19 +12,15 @@ namespace broEngine {
 		class Window
 		{
 		private: //members
-			const char* m_Title;
-			int m_Width, m_Height;
+			WindowProperties props;
+			WindowData m_WindowData;
 			GLFWwindow* m_Window;
-			bool m_Closed;
 		public:
-			Window(const char* name, int width, int height);
+			Window(WindowProperties properties);
 			~Window();
 			bool closed() const;
 			void update();
 			void clear() const;
-
-			inline int getWidth() const { return m_Width; }
-			inline int getHeight() const { return m_Height; }
 
 			//Window scale
 			void SetSize(int width, int height);

@@ -7,8 +7,12 @@ int main()
 {
 	using namespace broEngine;
 	using namespace graphics;
+	//std::string windowName = "BroEngine";
+	//char* var = &windowName;
+	WindowProperties props = WindowProperties(false, "BroEngine", 1980, 1080);
 
-	Window window("BroEngine", 1280, 720);
+	Window window(props);
+
 	glClearColor(0.4f, 0.89f, 0.89f, 1.0f);
 
 	std::cout << glGetString(GL_VERSION);

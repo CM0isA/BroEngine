@@ -7,27 +7,19 @@ namespace broEngine {
 			GLFWwindow* handle;
 		};
 
-		Window::Window(const char* name, int width, int height)
+		Window::Window(WindowProperties properties) : props(properties)
 		{
-			m_Title = name;
-			m_Width = width;
-			m_Height = height;
+			m_WindowData = new WindowDataImpl();
+			m_WindowData->handle = nullptr;
 			if (!init())
 				glfwTerminate();
 		}
 
 		Window::~Window() 
 		{
-			m_Closed = true;
+			props.m_Closed = true;
+			glfwDestroyWindow(m_WindowData->handle);
 			glfwTerminate();
-		}
-
-		void Window::SetSize(int width, int height)
-		{
-			int frameBufferWidth, frameBufferHeight;
-			//glfwGetFramebufferSize(window->handle, &frameBufferWidth, &frameBufferHeight);
-
-
 		}
 
 		bool Window::init()
@@ -36,19 +28,26 @@ namespace broEngine {
 				std::cout << "Failed to initialize window" << std::endl;
 			else
 				std::cout << "Window initialized" << std::endl;
-			m_Closed = false;
+			props.m_Closed = false;
 			
-			m_Window = glfwCreateWindow(m_Width, m_Height, m_Title, NULL, NULL);
-			if (!m_Window)
+			m_WindowData->handle = glfwCreateWindow(props.getWidth(), props.getWidth(), props.m_Title.c_str(), NULL, NULL);
+			if (!m_WindowData)
 			{
 				glfwTerminate();
 				std::cout << "Failed to create the main window" << std::endl;
 				return false;
 			}
-			glfwMakeContextCurrent(m_Window); //Use the window
-
+			glfwMakeContextCurrent(m_WindowData->handle); //Use the window
 			return true;
 		}
+
+		void Window::SetSize(int width, int height)
+		{
+			int frameBufferWidth, frameBufferHeight;
+			//glfwGetFramebufferSize(window->handle, &frameBufferWidth, &frameBufferHeight);
+
+		}
+
 
 		
 
@@ -61,13 +60,13 @@ namespace broEngine {
 		{
 			glfwPollEvents();
 
-			glfwSwapBuffers(m_Window);
+			glfwSwapBuffers(m_WindowData->handle);
 		}
 
 
 		bool Window::closed() const
 		{
-			return glfwWindowShouldClose(m_Window);
+			return glfwWindowShouldClose(m_WindowData->handle);
 		}
 	}
 }
