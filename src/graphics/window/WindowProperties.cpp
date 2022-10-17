@@ -6,10 +6,8 @@ namespace broEngine {
 		{
 			m_Closed = closed;
 			m_Title = title;
-			m_Height = height;
 			m_Width = width;
+			m_Height = height;
 		}
-
-		//WindowProperties::SetSize()
 	}
 }

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <iostream>
-#include <GLFW/glfw3.h>
 
 namespace broEngine {
 	namespace graphics {

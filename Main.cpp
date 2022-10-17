@@ -1,4 +1,5 @@
 #include<iostream>
+#include<GL/glew.h>
 #include<GLFW/glfw3.h>
 
 #include "src/graphics/window/Window.h"
@@ -11,15 +12,21 @@ int main()
 	Window window(props); //Create a window
 	glClearColor(0.4f, 0.89f, 0.89f, 1.0f); //set clear color
 
+	GLuint VAO;
+	glGenVertexArrays(1, &VAO);
+	glBindVertexArray(VAO);
 
 	while (!window.closed())
 	{
 		window.clear();
-		glBegin(GL_TRIANGLES);
+		glBegin(GL_QUADS);
 		glVertex2f(-0.5f, -0.5f);
 		glVertex2f( 0.0f,  0.5f);
 		glVertex2f( 0.5f, -0.5f);
 		glEnd();
+
+		glDrawArrays(GL_ARRAY_BUFFER, 0, 6);
+
 		window.update();
 	}
 

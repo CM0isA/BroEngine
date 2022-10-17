@@ -31,7 +31,7 @@ namespace broEngine {
 				std::cout << "Window initialized" << std::endl;
 			props.m_Closed = false;
 			
-			m_WindowData->handle = glfwCreateWindow(props.getWidth(), props.getWidth(), props.m_Title.c_str(), NULL, NULL);
+			m_WindowData->handle = glfwCreateWindow(props.getWidth(), props.getHeight(), props.m_Title.c_str(), NULL, NULL);
 			if (!m_WindowData)
 			{
 				glfwTerminate();
@@ -40,6 +40,13 @@ namespace broEngine {
 			}
 			glfwMakeContextCurrent(m_WindowData->handle); //Use the window
 			glfwSetWindowSizeCallback(m_WindowData->handle, WindowCallbacks::OnResize);
+
+			if (glewInit() != GLEW_OK)
+			{
+				std::cout << "Could not initialize glew" << std::endl;
+				return false;
+			}
+
 			return true;
 		}
 	

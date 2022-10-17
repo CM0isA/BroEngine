@@ -1,7 +1,8 @@
 #pragma once
 
-#include <GLFW/glfw3.h>
 #include <iostream>
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
 #include "WindowProperties.h"
 
 namespace broEngine {
@@ -21,9 +22,6 @@ namespace broEngine {
 			bool closed() const;
 			void update();
 			void clear() const;
-
-			//Window scale
-			void SetSize(int width, int height);
 
 		private: //methods
 			bool init();
