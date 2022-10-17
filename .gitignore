@@ -34,3 +34,4 @@
 # Others
 .vs
 [Dd]ebug
+bin\*
