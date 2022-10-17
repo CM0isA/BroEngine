@@ -1,43 +1,30 @@
 #include<iostream>
-#include<glad/glad.h>
 #include<GLFW/glfw3.h>
+
+#include "src/graphics/window/Window.h"
 
 int main()
 {
-	//Initialize glfw
-	glfwInit();
+	using namespace broEngine;
+	using namespace graphics;
 
-	//Setup version for OpenGL
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-	//Create main window
-	GLFWwindow* window = glfwCreateWindow(800, 800, "BroEngine", NULL, NULL);
-	glfwMakeContextCurrent(window); //Use the window
-
-	gladLoadGL();//Load OpenGl
-
-	//Specify window properties
-	glViewport(0, 0, 800, 800);
-
-	//window color
+	Window window("BroEngine", 1280, 720);
 	glClearColor(0.4f, 0.89f, 0.89f, 1.0f);
-	//clear the buffer color
-	glClear(GL_COLOR_BUFFER_BIT);
-	//swap buffer to display color
-	glfwSwapBuffers(window);
 
+	std::cout << glGetString(GL_VERSION);
 
-	//Process window operations (avoid unresponding window)
-	while (!glfwWindowShouldClose(window))
+	while (!window.closed())
 	{
-		//glfw events
-		glfwPollEvents();
+		window.clear();
+		glBegin(GL_TRIANGLES);
+		glVertex2f(-0.5f, -0.5f);
+		glVertex2f( 0.0f,  0.5f);
+		glVertex2f( 0.5f, -0.5f);
+		glEnd();
+		window.update();
 	}
 
 	//Terminate stuff
-	glfwDestroyWindow(window);
 	glfwTerminate();
 	return 0;
 }

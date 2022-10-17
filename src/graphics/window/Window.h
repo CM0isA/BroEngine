@@ -5,6 +5,8 @@
 
 namespace broEngine {
 	namespace graphics {
+		struct WindowDataImpl;
+		typedef WindowDataImpl* WindowData;
 
 		class Window
 		{
@@ -17,7 +19,14 @@ namespace broEngine {
 			Window(const char* name, int width, int height);
 			~Window();
 			bool closed() const;
-			void update() const;
+			void update();
+			void clear() const;
+
+			inline int getWidth() const { return m_Width; }
+			inline int getHeight() const { return m_Height; }
+
+			//Window scale
+			void SetSize(int width, int height);
 
 		private: //methods
 			bool init();
