@@ -39,6 +39,7 @@ namespace broEngine {
 				return false;
 			}
 			glfwMakeContextCurrent(m_WindowData->handle); //Use the window
+			glfwSetWindowUserPointer(m_WindowData->handle, this);	
 			glfwSetWindowSizeCallback(m_WindowData->handle, WindowCallbacks::OnResize);
 
 			if (glewInit() != GLEW_OK)
@@ -49,11 +50,28 @@ namespace broEngine {
 
 			return true;
 		}
+
+
+
+		void Window::key_callback(int key, int scanCode, int action, int mods)
+		{
+			keyMods = mods;
+			if (keyMods == false)
+			{
+				keys[key] = action ? true : false;
+
+			}
+		}
 	
 
 		void Window::clear() const
 		{
 			glClear(GL_COLOR_BUFFER_BIT);
+		}
+
+		int Window::GetKeyMode()
+		{
+			return keyMods;
 		}
 
 		void Window::update() 

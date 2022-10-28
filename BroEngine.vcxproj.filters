@@ -18,24 +18,30 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\window\Window.cpp">
+    <ClCompile Include="src\core\graphics\window\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\window\window_callbacks.cpp">
+    <ClCompile Include="src\core\graphics\window\window_callbacks.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\window\WindowProperties.cpp">
+    <ClCompile Include="src\core\graphics\window\WindowProperties.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Engine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\graphics\window\Window.h">
+    <ClInclude Include="src\core\graphics\window\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\graphics\window\window_callbacks.h">
+    <ClInclude Include="src\core\graphics\window\window_callbacks.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\graphics\window\WindowProperties.h">
+    <ClInclude Include="src\core\graphics\window\WindowProperties.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\Engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
