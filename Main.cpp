@@ -22,9 +22,12 @@ int main()
 	while (!window->closed())
 	{
 		window->clear();
+		double x, y;
+		window->getMousePosition(x, y);
 
 		//std::cout << window->isKeyPressed(GLFW_KEY_A);
-		std::cout << window->isButtonPressed(GLFW_MOUSE_BUTTON_1);
+		//std::cout << window->isButtonPressed(GLFW_MOUSE_BUTTON_1);
+		std::cout << x << ", " << y << std::endl;
 
 #if 1
 		glBegin(GL_QUADS);

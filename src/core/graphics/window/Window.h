@@ -37,13 +37,16 @@ namespace broEngine {
 			int GetKeyMode();
 			static bool isKeyPressed(unsigned int keyCode);
 			static bool isButtonPressed(unsigned int buttonCode);
+			static void getMousePosition(double& x, double& y);
+
 
 		private: //methods
 			bool init();
 
 		protected:
 			void key_callback(int key, int scanCode, int action, int mods);
-			void mouse_callback(int button, int action, int mods);
+			void mouse_buttons_callback(int button, int action, int mods);
+			void cursor_position_callback(double xpos, double ypos);
 		};
 	}
 }

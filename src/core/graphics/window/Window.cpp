@@ -54,10 +54,11 @@ namespace broEngine {
 				return false;
 			}
 			glfwMakeContextCurrent(m_WindowData->handle); //Use the window
-			glfwSetWindowUserPointer(m_WindowData->handle, this);	
-			glfwSetWindowSizeCallback(m_WindowData->handle, WindowCallbacks::OnResize);
-			glfwSetKeyCallback(m_WindowData->handle, WindowCallbacks::key_callback);
-			glfwSetMouseButtonCallback(m_WindowData->handle, WindowCallbacks::mouse_callback);
+			glfwSetWindowUserPointer(m_WindowData->handle, this); //Point to the window
+			glfwSetWindowSizeCallback(m_WindowData->handle, WindowCallbacks::OnResize); // Window size
+			glfwSetKeyCallback(m_WindowData->handle, WindowCallbacks::key_callback); // Keyboard 
+			glfwSetMouseButtonCallback(m_WindowData->handle, WindowCallbacks::mouse_callback); // Mouse button
+			glfwSetCursorPosCallback(m_WindowData->handle, WindowCallbacks::cursor_position_callback); // Mouse position
 
 			if (glewInit() != GLEW_OK)
 			{
@@ -79,9 +80,16 @@ namespace broEngine {
 			}
 		}
 
-		void Window::mouse_callback(int button, int action, int mods)
+		void Window::mouse_buttons_callback(int button, int action, int mods)
 		{
 			m_mouseButtons[button] = action != GLFW_RELEASE;
+		}
+
+		void Window::cursor_position_callback(double xpos, double ypos)
+		{
+			mouse_x = xpos;
+			mouse_y = ypos;
+			//return mouse_x, mouse_y;
 		}
 	
 
@@ -108,6 +116,12 @@ namespace broEngine {
 			if (buttonCode >= MAX_MOUSE)
 				return false;
 			return m_mouseButtons[buttonCode];
+		}
+
+		void Window::getMousePosition(double& x, double& y)
+		{
+			x = mouse_x;
+			y = mouse_y;
 		}
 
 		void Window::update() 
