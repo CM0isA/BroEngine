@@ -152,6 +152,7 @@
     <ClInclude Include="src\core\graphics\window\Window.h" />
     <ClInclude Include="src\core\graphics\window\WindowProperties.h" />
     <ClInclude Include="src\core\graphics\window\window_callbacks.h" />
+    <ClInclude Include="src\core\utils\math_utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
