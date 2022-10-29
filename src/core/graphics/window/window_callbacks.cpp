@@ -21,9 +21,9 @@ namespace broEngine {
 
 		}
 
-		void WindowCallbacks::mouse_click()
+		void WindowCallbacks::mouse_callback(GLFWwindow* window, int button, int action, int mods)
 		{
-
+			coreEngine::GetWindow()->mouse_callback(button, action, mods);
 		}
 
 

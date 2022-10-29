@@ -19,7 +19,7 @@ namespace broEngine {
 
 			// mouse
 			static void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
-			static void mouse_click();
+			static void mouse_callback(GLFWwindow* window, int button, int action, int mods);
 
 		};
 

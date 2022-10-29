@@ -25,8 +25,8 @@ namespace broEngine {
 			int keyMods;
 
 			// 
-			static int keys[MAX_KEYS];
-			static int mouseButtons[MAX_MOUSE];
+			static int m_keys[MAX_KEYS];
+			static int m_mouseButtons[MAX_MOUSE];
 			static double mouse_x, mouse_y;
 		public:
 			explicit Window(WindowProperties properties);
@@ -35,12 +35,15 @@ namespace broEngine {
 			void update();
 			void clear() const;
 			int GetKeyMode();
+			static bool isKeyPressed(unsigned int keyCode);
+			static bool isButtonPressed(unsigned int buttonCode);
 
 		private: //methods
 			bool init();
 
 		protected:
 			void key_callback(int key, int scanCode, int action, int mods);
+			void mouse_callback(int button, int action, int mods);
 		};
 	}
 }
