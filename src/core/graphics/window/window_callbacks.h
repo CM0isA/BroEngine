@@ -8,6 +8,7 @@ namespace broEngine {
 
 		class WindowCallbacks
 		{
+			//friend class Input;
 		private:
 			WindowCallbacks() = delete;
 		public:

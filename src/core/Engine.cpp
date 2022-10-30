@@ -3,6 +3,7 @@
 namespace broEngine {
 
 	graphics::Window* coreEngine::window = nullptr;
+	Input_Controller::Input* coreEngine::controller = nullptr;
 
 
 	graphics::Window* coreEngine::Init(graphics::WindowProperties& props)
@@ -16,9 +17,22 @@ namespace broEngine {
 		return window;
 	}
 
+	Input_Controller::Input* coreEngine::Init()
+	{
+		controller = new Input_Controller::Input();
+
+		return controller;
+	}
+
+
 	graphics::Window* coreEngine::GetWindow()
 	{
 		return window;
+	}
+
+	Input_Controller::Input* coreEngine::GetInputController()
+	{
+		return controller;
 	}
 
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "graphics/window/Window.h"
+#include "input/Input.h"
 
 namespace broEngine {
 	
@@ -10,7 +11,14 @@ namespace broEngine {
 
 		static graphics::Window* GetWindow();
 
+		static Input_Controller::Input* Init();
+
+		static Input_Controller::Input* GetInputController();
+
+
 	private:
 		static graphics::Window* window;
+
+		static Input_Controller::Input* controller;
 	};
 }

@@ -13,17 +13,17 @@ namespace broEngine {
 
 		void WindowCallbacks::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 		{
-			coreEngine::GetWindow()->key_callback(key, scancode, action, mods);
+			coreEngine::GetInputController()->key_callback(key, scancode, action, mods);
 		}
 
 		void WindowCallbacks::cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
 		{
-			coreEngine::GetWindow()->cursor_position_callback(xpos, ypos);
+			coreEngine::GetInputController()->cursor_position_callback(xpos, ypos);
 		}
 
 		void WindowCallbacks::mouse_callback(GLFWwindow* window, int button, int action, int mods)
 		{
-			coreEngine::GetWindow()->mouse_buttons_callback(button, action, mods);
+			coreEngine::GetInputController()->mouse_buttons_callback(button, action, mods);
 		}
 
 

@@ -3,12 +3,6 @@
 
 namespace broEngine {
 	namespace graphics {
-		int Window::m_keys[MAX_KEYS];
-		int Window::m_mouseButtons[MAX_MOUSE];
-		double Window::mouse_x;
-		double Window::mouse_y;
-
-
 		struct WindowDataImpl
 		{
 			GLFWwindow* handle;
@@ -20,15 +14,6 @@ namespace broEngine {
 			m_WindowData->handle = nullptr;
 			if (!init())
 				glfwTerminate();
-
-			for (int i = 0; i < MAX_KEYS; i++)
-			{
-				m_keys[i] = false;
-			}
-			for (int i = 0; i < MAX_MOUSE; i++)
-			{
-				m_mouseButtons[i] = false;
-			}
 		}
 
 		Window::~Window() 
@@ -70,58 +55,9 @@ namespace broEngine {
 		}
 
 
-
-		void Window::key_callback(int key, int scanCode, int action, int mods)
-		{
-			keyMods = mods;
-			if (keyMods == false)
-			{
-				m_keys[key] = action != GLFW_RELEASE;
-			}
-		}
-
-		void Window::mouse_buttons_callback(int button, int action, int mods)
-		{
-			m_mouseButtons[button] = action != GLFW_RELEASE;
-		}
-
-		void Window::cursor_position_callback(double xpos, double ypos)
-		{
-			mouse_x = xpos;
-			mouse_y = ypos;
-			//return mouse_x, mouse_y;
-		}
-	
-
 		void Window::clear() const
 		{
 			glClear(GL_COLOR_BUFFER_BIT);
-		}
-
-		int Window::GetKeyMode()
-		{
-			return keyMods;
-		}
-
-		bool Window::isKeyPressed(unsigned int keyCode)
-		{
-			if (keyCode >= MAX_KEYS)
-				return false;
-
-			return m_keys[keyCode];
-		}
-
-		bool Window::isButtonPressed(unsigned int buttonCode)
-		{
-			if (buttonCode >= MAX_MOUSE)
-				return false;
-			return m_mouseButtons[buttonCode];
-		}
-
-		void Window::getMousePosition(double& x, double& y)
-		{
-			x = mouse_x;
-			y = mouse_y;
 		}
 
 		void Window::update() 

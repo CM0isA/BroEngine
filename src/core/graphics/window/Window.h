@@ -15,38 +15,18 @@ namespace broEngine {
 
 		class Window
 		{
-			friend class WindowCallbacks;
 		private: //members
 			WindowProperties props;
 			WindowData m_WindowData;
-			//GLFWwindow* m_Window;
-			
-			// Special keys
-			int keyMods;
-
-			// 
-			static int m_keys[MAX_KEYS];
-			static int m_mouseButtons[MAX_MOUSE];
-			static double mouse_x, mouse_y;
 		public:
 			explicit Window(WindowProperties properties);
 			~Window();
 			bool closed() const;
 			void update();
 			void clear() const;
-			int GetKeyMode();
-			static bool isKeyPressed(unsigned int keyCode);
-			static bool isButtonPressed(unsigned int buttonCode);
-			static void getMousePosition(double& x, double& y);
-
 
 		private: //methods
 			bool init();
-
-		protected:
-			void key_callback(int key, int scanCode, int action, int mods);
-			void mouse_buttons_callback(int button, int action, int mods);
-			void cursor_position_callback(double xpos, double ypos);
 		};
 	}
 }
