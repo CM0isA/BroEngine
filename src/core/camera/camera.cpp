@@ -11,9 +11,9 @@ void Camera::Init() {
 
   glm::vec3 cameraUp = glm::cross(cameraDirection, cameraRight);
 
-  LookAt = glm::lookAt(glm::vec3(0.0f, 0.0f, 3.0f), 
-  		   glm::vec3(0.0f, 0.0f, 0.0f), 
-  		   glm::vec3(0.0f, 1.0f, 0.0f));
+//   LookAt = glm::lookAt(glm::vec3(0.0f, 0.0f, 3.0f), 
+//   		   glm::vec3(0.0f, 0.0f, 0.0f), 
+//   		   glm::vec3(0.0f, 1.0f, 0.0f));
 }
 
 } // namespace camera
