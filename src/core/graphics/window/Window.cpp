@@ -30,6 +30,10 @@ namespace broEngine {
 			else
 				std::cout << "Window initialized" << std::endl;
 			props.m_Closed = false;
+
+			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+			glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+			glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 			
 			m_WindowData->handle = glfwCreateWindow(props.getWidth(), props.getHeight(), props.m_Title.c_str(), NULL, NULL);
 			if (!m_WindowData)
@@ -42,7 +46,7 @@ namespace broEngine {
 			glfwSetWindowUserPointer(m_WindowData->handle, this); //Point to the window
 			glfwSetWindowSizeCallback(m_WindowData->handle, WindowCallbacks::OnResize); // Window size
 			glfwSetKeyCallback(m_WindowData->handle, WindowCallbacks::key_callback); // Keyboard 
-			glfwSetMouseButtonCallback(m_WindowData->handle, WindowCallbacks::mouse_callback); // Mouse button
+			glfwSetMouseButtonCallback(m_WindowData->handle, WindowCallbacks::mouse_buttons_callback); // Mouse button
 			glfwSetCursorPosCallback(m_WindowData->handle, WindowCallbacks::cursor_position_callback); // Mouse position
 
 			if (glewInit() != GLEW_OK)
@@ -57,14 +61,13 @@ namespace broEngine {
 
 		void Window::clear() const
 		{
-			glClear(GL_COLOR_BUFFER_BIT);
+			glClear(GL_COLOR_BUFFER_BIT); //clean back buffer and assign a new color to it
 		}
 
 		void Window::update() 
 		{
-			glfwPollEvents();
-
 			glfwSwapBuffers(m_WindowData->handle);
+			glfwPollEvents();
 		}
 
 

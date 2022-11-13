@@ -11,6 +11,8 @@ namespace broEngine {
 
 		void CameraInput::OnInputUpdate(float deltaTime, int mods)
 		{
+			std::cout << activeCamera->cameraDirection.x << " y: " << activeCamera->cameraDirection.y << " z: " << activeCamera->cameraDirection.z << std::endl;
+
 			if (coreEngine::GetInputController()->KeyHold(GLFW_KEY_W)) activeCamera->MoveForward(deltaTime);
 			if (coreEngine::GetInputController()->KeyHold(GLFW_KEY_A)) activeCamera->MoveLeft(deltaTime);
 			if (coreEngine::GetInputController()->KeyHold(GLFW_KEY_S)) activeCamera->MoveBackward(deltaTime);

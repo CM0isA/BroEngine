@@ -48,7 +48,6 @@ namespace broEngine {
 		{
 			glm::vec3 direction = glm::normalize(glm::vec3(cameraDirection.x, 0.0f, cameraDirection.z));
 			cameraPosition += direction * distance;
-			std::cout << cameraPosition.x << " y: " << cameraPosition.y << " z: " << cameraPosition.z << std::endl;
 		}
 
 		void MainCamera::MoveBackward(float distance)

@@ -141,6 +141,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\graphics\gpu\frameBuffer.cpp" />
     <ClCompile Include="src\core\input\Input.cpp" />
     <ClCompile Include="src\core\camera\camera_input.cpp" />
     <ClCompile Include="src\core\camera\camera.cpp" />
@@ -149,8 +150,10 @@
     <ClCompile Include="src\core\graphics\window\Window.cpp" />
     <ClCompile Include="src\core\graphics\window\WindowProperties.cpp" />
     <ClCompile Include="src\core\graphics\window\window_callbacks.cpp" />
+    <ClCompile Include="src\core\graphics\gpu\vertexBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\core\graphics\gpu\frameBuffer.h" />
     <ClInclude Include="src\core\input\Input.h" />
     <ClInclude Include="src\core\camera\camera_input.h" />
     <ClInclude Include="src\core\camera\camera.h" />
@@ -158,7 +161,9 @@
     <ClInclude Include="src\core\graphics\window\Window.h" />
     <ClInclude Include="src\core\graphics\window\WindowProperties.h" />
     <ClInclude Include="src\core\graphics\window\window_callbacks.h" />
+    <ClInclude Include="src\core\operations\Transform.h" />
     <ClInclude Include="src\core\utils\math_utils.h" />
+    <ClInclude Include="src\core\graphics\gpu\vertexBuffer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
