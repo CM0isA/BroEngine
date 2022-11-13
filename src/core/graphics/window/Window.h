@@ -13,8 +13,11 @@ namespace broEngine {
 		struct WindowDataImpl;
 		typedef WindowDataImpl* WindowData;
 
+
 		class Window
 		{
+			friend class Input;
+
 		private: //members
 			WindowProperties props;
 			WindowData m_WindowData;
@@ -24,6 +27,7 @@ namespace broEngine {
 			bool closed() const;
 			void update();
 			void clear() const;
+
 
 		private: //methods
 			bool init();

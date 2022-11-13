@@ -21,7 +21,7 @@ namespace broEngine {
 			coreEngine::GetInputController()->cursor_position_callback(xpos, ypos);
 		}
 
-		void WindowCallbacks::mouse_callback(GLFWwindow* window, int button, int action, int mods)
+		void WindowCallbacks::mouse_buttons_callback(GLFWwindow* window, int button, int action, int mods)
 		{
 			coreEngine::GetInputController()->mouse_buttons_callback(button, action, mods);
 		}
