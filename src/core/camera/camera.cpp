@@ -1,20 +1,98 @@
+#include <iostream>
 #include "camera.h"
 
 namespace broEngine {
-namespace camera {
-void Camera::Init() {
-  cameraPosition = glm::vec3(0.0f, 0.0f, 3.0f);
-  cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
-  cameraDirection = glm::normalize(cameraPosition - cameraTarget);
-  glm::vec3 cameraRight =
-      glm::normalize(glm::cross(glm::vec3(0.0f, 1.0f, 0.0f), cameraDirection));
+	namespace camera {
+		MainCamera::MainCamera()
+		{
+			cameraPosition = glm::vec3(0.0f, 2.0f, 5.0f);
+			cameraTarget = glm::vec3(0.0f, 0.0f, -1.0f);
+			cameraDirection = glm::normalize(cameraPosition - cameraTarget);
+			cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+			cameraRight = glm::vec3(1.0f, 0.0f, 0.0f);
+			distanceToTarget = 3;
+			m_viewMatrix = glm::lookAt(cameraPosition, glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
+		}
+		MainCamera::~MainCamera()
+		{
+		}
 
-  glm::vec3 cameraUp = glm::cross(cameraDirection, cameraRight);
+		void MainCamera::Init() {
+			cameraPosition = glm::vec3(0.0f, 0.0f, 3.0f);
+			cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
 
-//   LookAt = glm::lookAt(glm::vec3(0.0f, 0.0f, 3.0f), 
-//   		   glm::vec3(0.0f, 0.0f, 0.0f), 
-//   		   glm::vec3(0.0f, 1.0f, 0.0f));
-}
+			cameraDirection = glm::normalize(cameraPosition - cameraTarget);
 
-} // namespace camera
+			glm::vec3 cameraRight =
+				glm::normalize(glm::cross(glm::vec3(0.0f, 1.0f, 0.0f), cameraDirection));
+
+			glm::vec3 cameraUp = glm::cross(cameraDirection, cameraRight);
+
+
+		}
+
+		void MainCamera::Update(const glm::vec3& position)
+		{
+			this->cameraPosition = position;
+			cameraDirection = glm::normalize(cameraPosition - cameraTarget);
+			cameraRight = glm::cross(cameraDirection, cameraUp);
+			cameraUp = glm::cross(cameraRight, cameraDirection);
+		}
+
+		const glm::mat4& MainCamera::GetViewMatrix()
+		{
+			return glm::lookAt(cameraPosition, cameraPosition + cameraTarget, cameraUp);
+		}
+
+		void MainCamera::MoveForward(float distance)
+		{
+			glm::vec3 direction = glm::normalize(glm::vec3(cameraDirection.x, 0.0f, cameraDirection.z));
+			cameraPosition += direction * distance;
+			std::cout << cameraPosition.x << " y: " << cameraPosition.y << " z: " << cameraPosition.z << std::endl;
+		}
+
+		void MainCamera::MoveBackward(float distance)
+		{
+			glm::vec3 direction = glm::normalize(glm::vec3(cameraDirection.x, 0.0f, cameraDirection.z));
+			cameraPosition -= direction * distance;
+		}
+
+		void MainCamera::MoveRight(float distance)
+		{
+			glm::vec3 direction = glm::normalize(glm::cross(cameraDirection, cameraUp));
+			cameraPosition += direction * distance;
+
+		}
+
+		void MainCamera::MoveLeft(float distance)
+		{
+			glm::vec3 direction = glm::normalize(glm::cross(cameraDirection, cameraUp));
+			cameraPosition -= direction * distance;
+		}
+
+		void MainCamera::MoveUp(float distance)
+		{
+			cameraPosition.y += distance;
+		}
+
+		void MainCamera::MoveDown(float distance)
+		{
+			cameraPosition.y -= distance;
+		}
+
+		void MainCamera::RotateOX(float angle)
+		{
+			cameraDirection = glm::normalize(glm::vec3(glm::rotate(glm::mat4(1), angle, cameraRight) * glm::vec4(cameraDirection, 1)));
+			cameraUp = glm::normalize(glm::cross(cameraRight, cameraDirection));
+		}
+
+		void MainCamera::RotateOY(float angle)
+		{
+			cameraDirection = glm::normalize(glm::vec3(glm::rotate(glm::mat4(1), angle, glm::vec3(0, 1, 0)) * glm::vec4(cameraDirection, 1)));
+			cameraRight = glm::normalize(glm::vec3(glm::rotate(glm::mat4(1), angle, glm::vec3(0, 1, 0)) * glm::vec4(cameraRight, 1)));
+			cameraUp = glm::normalize(glm::cross(cameraDirection, cameraUp));
+		}
+
+
+	} // namespace camera
 } // namespace broEngine

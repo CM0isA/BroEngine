@@ -1,4 +1,5 @@
 #include "Input.h"
+#include "../Engine.h"
 
 namespace broEngine {
 	namespace Input_Controller {
@@ -22,6 +23,7 @@ namespace broEngine {
 
 		void Input::Init()
 		{
+			window = coreEngine::GetWindow();
 		}
 
 
@@ -60,6 +62,16 @@ namespace broEngine {
 		bool Input::GetKeyMode()
 		{
 			return false;
+		}
+
+		bool Input::KeyHold(int keyCode)
+		{
+			return m_keys[keyCode];
+		}
+
+		bool Input::GetSpecialKeyState()
+		{
+			return keyMods;
 		}
 
 		void Input::key_callback(int key, int scanCode, int action, int mods)

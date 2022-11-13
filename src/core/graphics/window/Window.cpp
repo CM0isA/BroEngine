@@ -72,5 +72,6 @@ namespace broEngine {
 		{
 			return glfwWindowShouldClose(m_WindowData->handle);
 		}
+
 	}
 }
