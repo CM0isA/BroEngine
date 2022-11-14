@@ -141,7 +141,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\core\graphics\gpu\frameBuffer.cpp" />
+    <ClCompile Include="src\core\graphics\buffres\EBO.cpp" />
+    <ClCompile Include="src\core\graphics\buffres\frameBuffer.cpp" />
+    <ClCompile Include="src\core\graphics\shaders\ShaderClass.cpp" />
     <ClCompile Include="src\core\input\Input.cpp" />
     <ClCompile Include="src\core\camera\camera_input.cpp" />
     <ClCompile Include="src\core\camera\camera.cpp" />
@@ -150,10 +152,14 @@
     <ClCompile Include="src\core\graphics\window\Window.cpp" />
     <ClCompile Include="src\core\graphics\window\WindowProperties.cpp" />
     <ClCompile Include="src\core\graphics\window\window_callbacks.cpp" />
-    <ClCompile Include="src\core\graphics\gpu\vertexBuffer.cpp" />
+    <ClCompile Include="src\core\graphics\buffres\vertexBuffer.cpp" />
+    <ClCompile Include="src\core\graphics\buffres\VBO.cpp" />
+    <ClCompile Include="src\core\graphics\buffres\VAO.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\core\graphics\gpu\frameBuffer.h" />
+    <ClInclude Include="src\core\graphics\buffres\EBO.h" />
+    <ClInclude Include="src\core\graphics\buffres\frameBuffer.h" />
+    <ClInclude Include="src\core\graphics\shaders\ShaderClass.h" />
     <ClInclude Include="src\core\input\Input.h" />
     <ClInclude Include="src\core\camera\camera_input.h" />
     <ClInclude Include="src\core\camera\camera.h" />
@@ -163,7 +169,13 @@
     <ClInclude Include="src\core\graphics\window\window_callbacks.h" />
     <ClInclude Include="src\core\operations\Transform.h" />
     <ClInclude Include="src\core\utils\math_utils.h" />
-    <ClInclude Include="src\core\graphics\gpu\vertexBuffer.h" />
+    <ClInclude Include="src\core\graphics\buffres\vertexBuffer.h" />
+    <ClInclude Include="src\core\graphics\buffres\VBO.h" />
+    <ClInclude Include="src\core\graphics\buffres\VAO.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\core\graphics\shaders\FragmentShader.frag" />
+    <None Include="src\core\graphics\shaders\VertexShader.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
