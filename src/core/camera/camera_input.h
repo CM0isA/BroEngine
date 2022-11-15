@@ -15,7 +15,7 @@ namespace broEngine {
 			CameraInput(MainCamera* activeCamera);
 			void OnInputUpdate(float deltaTime, int mods);
 			void OnKeyPress(int key, int mods);
-			void OnMouseMove(int mouseX, int mouseY, int deltaX, int deltaY);
+			void OnMouseMove(float deltaX, float deltaY);
 			void OnMouseBtnPress(int mouseX, int mouseY, int button, int mods);
 			void OnMouseBtnRelease(int mouseX, int mouseY, int button, int mods);
 

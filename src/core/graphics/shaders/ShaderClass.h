@@ -6,7 +6,7 @@
 #include <sstream>
 #include <iostream>
 #include <cerrno>
-#include <GL/glew.h>
+#include <glad/glad.h>
 
 namespace broEngine {
 	namespace graphics {
@@ -17,8 +17,13 @@ namespace broEngine {
 			GLuint ID;
 			Shader(const char* vertexFile, const char* fragmentFile);
 
-			void Activate();
-			void Delete();
+			void Activate() const; 
+			void Delete() const;
+
+			void compileErrors(unsigned int shader, const char* type);
+
+		//private:
+		//	GLuint Load();
 
 		};
 	}

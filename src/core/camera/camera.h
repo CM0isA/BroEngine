@@ -30,11 +30,7 @@ namespace broEngine {
 			MainCamera();
 			~MainCamera();
 
-			//void Init();
-			virtual void Update();
-
 			const glm::mat4& GetViewMatrix();
-
 
 			//camera movement
 			void MoveForward(float distance);
@@ -50,7 +46,6 @@ namespace broEngine {
 
 		public:
 			glm::vec3 cameraPosition;
-			glm::vec3 cameraTarget;
 			glm::vec3 cameraDirection;
 			glm::vec3 cameraUp;
 			glm::vec3 cameraRight;

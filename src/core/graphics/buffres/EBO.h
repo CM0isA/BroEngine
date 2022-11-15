@@ -1,4 +1,5 @@
-#include <GL/glew.h>
+//#include <GL/glew.h>
+#include <glad/glad.h>
 #include <vector>
 #ifndef EBO_CLASS_H
 #define EBO_CLASS_H

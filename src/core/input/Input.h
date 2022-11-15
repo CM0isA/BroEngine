@@ -14,6 +14,8 @@ namespace broEngine {
 			friend class graphics::Window;
 		public:
 			explicit Input();
+			float deltaX = 0;
+			float deltaY = 0;
 		private:
 			void Init();
 			static int m_keys[MAX_KEYS];

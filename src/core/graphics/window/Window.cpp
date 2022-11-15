@@ -49,12 +49,6 @@ namespace broEngine {
 			glfwSetMouseButtonCallback(m_WindowData->handle, WindowCallbacks::mouse_buttons_callback); // Mouse button
 			glfwSetCursorPosCallback(m_WindowData->handle, WindowCallbacks::cursor_position_callback); // Mouse position
 
-			if (glewInit() != GLEW_OK)
-			{
-				std::cout << "Could not initialize glew" << std::endl;
-				return false;
-			}
-
 			return true;
 		}
 

@@ -1,5 +1,5 @@
 #include<iostream>
-#include<GL/glew.h>
+#include<glad/glad.h>
 #include<GLFW/glfw3.h>
 
 #include "src/core/graphics/window/Window.h"
@@ -14,6 +14,11 @@
 
 int main()
 {
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+
 	using namespace broEngine;
 	using namespace graphics;
 	using namespace camera;
@@ -32,6 +37,10 @@ int main()
 
 	Model = glm::translate(Model, position);
 
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+		std::cout << "Failed to initialize OpenGL context" << std::endl;
+		return -1;
+	}
 
 	std::vector<float> vertices = {
 		-0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f, // Lower left corner
@@ -42,7 +51,7 @@ int main()
 		0.0f, -0.5f * float(sqrt(3)) / 3, 0.0f // Inner down
 	};
 
-	std::vector<unsigned int> indices = {
+	std::vector<GLuint> indices = {
 		0,3,5,
 		3,2,4,
 		5,4,1
@@ -60,7 +69,7 @@ int main()
 
 
 	vao.Unbind();
-	ebo.Unbind();
+	//ebo.Unbind();
 
 
 	while (!window->closed())
@@ -68,14 +77,14 @@ int main()
 		glClearColor(0.4f, 0.89f, 0.89f, 1.0f); //set clear color
 		window->clear();
 
-		activeCamera->Update(); //camera properties
-		cameraInput.OnInputUpdate(5.0f, 0); // camera input
+		cameraInput.OnInputUpdate(0.1f, 0); // camera input
 
 		shaderProgram.Activate();
-		//glUniformMatrix4fv(shaderProgram->loc_view_matrix, 1, GL_FALSE, glm::value_ptr(viewMatrix));
-		glUniformMatrix4fv(glGetUniformLocation(1, "Projection"), 1, GL_FALSE, glm::value_ptr(projectionMatrix));
-		glUniformMatrix4fv(glGetUniformLocation(1, "View"), 1, GL_FALSE, glm::value_ptr(activeCamera->GetViewMatrix()));
-		glUniformMatrix4fv(glGetUniformLocation(1, "Model"), 1, GL_FALSE, glm::value_ptr(Model));
+		glm::mat4 view = activeCamera->GetViewMatrix();
+
+		glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "Projection"), 1, GL_FALSE, glm::value_ptr(projectionMatrix));
+		glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "View"), 1, GL_FALSE, glm::value_ptr(view));
+		glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "Model"), 1, GL_FALSE, glm::value_ptr(Model));
 
 		vao.Bind();
 
@@ -86,12 +95,14 @@ int main()
 			(void*)0           // element array buffer offset
 		);
 
+		//glDrawArrays(GL_TRIANGLES, 0, vertices.size());
+
 		window->update();
 	}
 
 
 	vao.Delete();
-	ebo.Delete();
+	//ebo.Delete();
 	vbo.Delete();
 
 

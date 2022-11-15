@@ -34,6 +34,16 @@ namespace broEngine {
 
 		void Input::cursor_position_callback(double xpos, double ypos)
 		{
+			if (m_mouseButtons[1] != GLFW_RELEASE)
+			{
+				deltaX = xpos - mouse_x;
+				deltaY = ypos - mouse_y;
+			}
+			else
+			{
+				deltaX = 0;
+				deltaY = 0;
+			}
 			mouse_x = xpos;
 			mouse_y = ypos;
 		}

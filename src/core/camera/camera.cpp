@@ -6,8 +6,7 @@ namespace broEngine {
 		MainCamera::MainCamera()
 		{
 			cameraPosition = glm::vec3(0.0f, 0.0f, 3.0f);
-			cameraTarget = glm::vec3(0.0f, 0.0f, -1.0f);
-			cameraDirection = glm::normalize(cameraPosition - cameraTarget);
+			cameraDirection = glm::vec3(0.0f, 0.0f, -1.0f);
 			cameraRight =
 				glm::normalize(glm::cross(glm::vec3(0.0f, 1.0f, 0.0f), cameraDirection));
 			cameraUp = glm::cross(cameraDirection, cameraRight);
@@ -17,27 +16,20 @@ namespace broEngine {
 		{
 		}
 
-		void MainCamera::Update()
-		{
-			cameraDirection = glm::normalize(cameraPosition - cameraTarget);
-			cameraRight = glm::cross(cameraDirection, cameraUp);
-			cameraUp = glm::cross(cameraRight, cameraDirection);
-		}
-
 		const glm::mat4& MainCamera::GetViewMatrix()
 		{
-			return glm::lookAt(cameraPosition, cameraPosition + cameraTarget, cameraUp);
+			return glm::lookAt(cameraPosition, cameraPosition + cameraDirection, cameraUp);
 		}
 
 		void MainCamera::MoveForward(float distance)
 		{
-			glm::vec3 direction = glm::normalize(glm::vec3(cameraDirection.x, 0.0f, cameraDirection.z));
+			glm::vec3 direction = glm::normalize(cameraDirection);
 			cameraPosition += direction * distance;
 		}
 
 		void MainCamera::MoveBackward(float distance)
 		{
-			glm::vec3 direction = glm::normalize(glm::vec3(cameraDirection.x, 0.0f, cameraDirection.z));
+			glm::vec3 direction = glm::normalize(cameraDirection);
 			cameraPosition -= direction * distance;
 		}
 
@@ -56,12 +48,14 @@ namespace broEngine {
 
 		void MainCamera::MoveUp(float distance)
 		{
-			cameraPosition.y += distance;
+			glm::vec3 dir = glm::normalize(cameraUp);
+			cameraPosition += dir * distance;
 		}
 
 		void MainCamera::MoveDown(float distance)
 		{
-			cameraPosition.y -= distance;
+			glm::vec3 dir = glm::normalize(cameraUp);
+			cameraPosition -= dir * distance;
 		}
 
 		void MainCamera::RotateOX(float angle)
