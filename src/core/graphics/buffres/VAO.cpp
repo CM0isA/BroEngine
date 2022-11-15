@@ -9,16 +9,13 @@ namespace broEngine {
 
 		void VAO::LinkVBO(VBO& VBO, GLuint layout)
 		{
-			VAO::Bind();
+			VBO.Bind();
 			// Configure vertex attribute for VAO read
 			glVertexAttribPointer(layout, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 			// Enable the vertex attribute
 			glEnableVertexAttribArray(layout);
-			VAO::Unbind();
-
+			VBO.Unbind();
 		}
-
-
 
 		void VAO::Bind()
 		{

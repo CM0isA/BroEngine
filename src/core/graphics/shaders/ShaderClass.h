@@ -12,7 +12,6 @@ namespace broEngine {
 	namespace graphics {
 		std::string get_file_contents(std::string filename);
 
-
 		class Shader {
 		public:
 			GLuint ID;

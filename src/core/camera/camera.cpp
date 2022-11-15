@@ -5,35 +5,20 @@ namespace broEngine {
 	namespace camera {
 		MainCamera::MainCamera()
 		{
-			cameraPosition = glm::vec3(0.0f, 2.0f, 5.0f);
+			cameraPosition = glm::vec3(0.0f, 0.0f, 3.0f);
 			cameraTarget = glm::vec3(0.0f, 0.0f, -1.0f);
 			cameraDirection = glm::normalize(cameraPosition - cameraTarget);
-			cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
-			cameraRight = glm::vec3(1.0f, 0.0f, 0.0f);
-			distanceToTarget = 3;
+			cameraRight =
+				glm::normalize(glm::cross(glm::vec3(0.0f, 1.0f, 0.0f), cameraDirection));
+			cameraUp = glm::cross(cameraDirection, cameraRight);
 			m_viewMatrix = glm::lookAt(cameraPosition, glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
 		}
 		MainCamera::~MainCamera()
 		{
 		}
 
-		void MainCamera::Init() {
-			cameraPosition = glm::vec3(0.0f, 0.0f, 3.0f);
-			cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
-
-			cameraDirection = glm::normalize(cameraPosition - cameraTarget);
-
-			glm::vec3 cameraRight =
-				glm::normalize(glm::cross(glm::vec3(0.0f, 1.0f, 0.0f), cameraDirection));
-
-			glm::vec3 cameraUp = glm::cross(cameraDirection, cameraRight);
-
-
-		}
-
-		void MainCamera::Update(const glm::vec3& position)
+		void MainCamera::Update()
 		{
-			this->cameraPosition = position;
 			cameraDirection = glm::normalize(cameraPosition - cameraTarget);
 			cameraRight = glm::cross(cameraDirection, cameraUp);
 			cameraUp = glm::cross(cameraRight, cameraDirection);

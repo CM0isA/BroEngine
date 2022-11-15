@@ -1,4 +1,6 @@
 #include <GL/glew.h>
+#include <iostream>
+#include <vector>
 #ifndef VBO_CLASS_H
 #define VBO_CLASS_H
 
@@ -8,7 +10,7 @@ namespace broEngine {
 		{
 		public:
 			GLuint ID;
-			VBO(GLfloat* vertices, GLsizeiptr size);
+			VBO(std::vector<float> vertices, GLsizeiptr size);
 
 			void Bind();
 			void Unbind();

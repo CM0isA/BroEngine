@@ -39,12 +39,6 @@
     <ClCompile Include="src\core\input\Input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\graphics\buffres\frameBuffer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\core\graphics\buffres\vertexBuffer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\core\graphics\shaders\ShaderClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -86,12 +80,6 @@
     <ClInclude Include="src\core\operations\Transform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\graphics\buffres\frameBuffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\core\graphics\buffres\vertexBuffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\core\graphics\shaders\ShaderClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -106,7 +94,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\core\graphics\shaders\VertexShader.vert" />
-    <None Include="src\core\graphics\shaders\FragmentShader.frag" />
+    <None Include="src\core\graphics\shaders\VertexShader.glsl" />
+    <None Include="src\core\graphics\shaders\FragmentShader.glsl" />
   </ItemGroup>
 </Project>
