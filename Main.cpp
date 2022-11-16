@@ -61,8 +61,8 @@ int main()
 
 	VAO vao;
 	vao.Bind();
-	VBO vbo(vertices, vertices.size());
-	EBO ebo(indices, indices.size());
+	VBO vbo(vertices);
+	EBO ebo(indices);
 
 	//link vbo to vao
 	vao.LinkVBO(vbo, 0);
