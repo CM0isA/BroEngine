@@ -10,7 +10,7 @@ namespace broEngine {
 		{
 		public:
 			GLuint ID;
-			VBO(std::vector<float> vertices, GLsizeiptr size);
+			VBO(std::vector<float> vertices);
 
 			void Bind();
 			void Unbind();

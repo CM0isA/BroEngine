@@ -2,7 +2,7 @@
 
 namespace broEngine {
 	namespace graphics {
-		VBO::VBO(std::vector<float> vertices, GLsizeiptr size)
+		VBO::VBO(std::vector<float> vertices)
 		{
 			glGenBuffers(1, &ID);
 			glBindBuffer(GL_ARRAY_BUFFER, ID);

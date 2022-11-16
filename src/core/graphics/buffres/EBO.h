@@ -10,7 +10,7 @@ namespace broEngine {
 		{
 		public:
 			GLuint ID;
-			EBO(std::vector<unsigned int> indices, GLsizeiptr size);
+			EBO(std::vector<unsigned int> indices);
 
 			void Bind();
 			void Unbind();

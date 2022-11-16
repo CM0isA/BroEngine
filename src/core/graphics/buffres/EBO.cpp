@@ -2,7 +2,7 @@
 
 namespace broEngine {
 	namespace graphics {
-		EBO::EBO(std::vector<GLuint> indices, GLsizeiptr size)
+		EBO::EBO(std::vector<GLuint> indices)
 		{
 			glGenBuffers(1, &ID);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ID);
