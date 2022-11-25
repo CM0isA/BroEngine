@@ -72,7 +72,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(SolutionDir)\Libraries\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Projects\BroEngine\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)\Libraries\lib;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
     <IntDir>bin\$(Configuration)\</IntDir>
     <CopyLocalDeploymentContent>true</CopyLocalDeploymentContent>
@@ -131,11 +131,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-<<<<<<< HEAD
       <AdditionalDependencies>glfw3.lib;assimp-vc143-mtd.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-=======
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
->>>>>>> b0082d8fd5e34fbd3f507fed8bbab322b794c5e9
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -187,7 +183,6 @@
     <ClInclude Include="src\core\graphics\buffres\VAO.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="C:\Users\cmoisa\Downloads\assimp-5.2.5\assimp-5.2.5\build\bin\Debug\assimp-vc143-mtd.dll" />
     <None Include="src\core\graphics\shaders\FragmentShader.glsl" />
     <None Include="src\core\graphics\shaders\VertexShader.glsl" />
   </ItemGroup>
