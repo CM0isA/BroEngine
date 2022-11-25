@@ -54,6 +54,9 @@
     <ClCompile Include="Libraries\lib\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\core\importer\Mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\graphics\window\Window.h">
@@ -95,9 +98,20 @@
     <ClInclude Include="src\core\graphics\buffres\EBO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\core\importer\Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\core\graphics\shaders\VertexShader.glsl" />
     <None Include="src\core\graphics\shaders\FragmentShader.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="BroEngine.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
