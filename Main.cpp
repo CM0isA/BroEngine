@@ -6,11 +6,12 @@
 #include "src/core/input/Input.h"
 #include "src/core/Engine.h"
 #include "src/core/camera/camera.h"
-#include "src/core/graphics/buffres/EBO.h"
-#include "src/core/graphics/buffres/VAO.h"
-#include "src/core/graphics/buffres/VBO.h"
 #include "src/core/graphics/shaders/ShaderClass.h"
-
+#include "src/core/importer/Mesh.h"
+using namespace broEngine;
+using namespace graphics;
+using namespace camera;
+using namespace importer;
 
 int main()
 {
@@ -19,9 +20,8 @@ int main()
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 
-	using namespace broEngine;
-	using namespace graphics;
-	using namespace camera;
+
+
 	WindowProperties props = WindowProperties(false, "BroEngine", 1980, 1080);
 	Window* window = coreEngine::Init(props);
 
@@ -64,12 +64,8 @@ int main()
 	VBO vbo(vertices);
 	EBO ebo(indices);
 
-	//link vbo to vao
-	vao.LinkVBO(vbo, 0);
-
-
-	vao.Unbind();
-	//ebo.Unbind();
+	//Mesh mesh(vertices, indices);
+	//mesh.LoadMesh();
 
 
 	while (!window->closed())
@@ -86,24 +82,10 @@ int main()
 		glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "View"), 1, GL_FALSE, glm::value_ptr(view));
 		glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "Model"), 1, GL_FALSE, glm::value_ptr(Model));
 
-		vao.Bind();
-
-		glDrawElements(
-			GL_TRIANGLES,      // mode
-			indices.size(),    // count
-			GL_UNSIGNED_INT,   // type
-			(void*)0           // element array buffer offset
-		);
-
-		//glDrawArrays(GL_TRIANGLES, 0, vertices.size());
+		//mesh.RenderMesh();
 
 		window->update();
 	}
-
-
-	vao.Delete();
-	//ebo.Delete();
-	vbo.Delete();
 
 
 	//Terminate stuff
