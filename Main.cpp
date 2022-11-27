@@ -8,6 +8,7 @@
 #include "src/core/camera/camera.h"
 #include "src/core/graphics/shaders/ShaderClass.h"
 #include "src/core/importer/Mesh.h"
+#include "src/core/importer/Model.h"
 using namespace broEngine;
 using namespace graphics;
 using namespace camera;
@@ -33,9 +34,9 @@ int main()
 	glm::mat4 viewMatrix = activeCamera->GetViewMatrix();
 	glm::vec3 position = glm::vec3(0, 0, 0);
 
-	glm::mat4 Model = glm::mat4(1);
+	glm::mat4 ModelMatrix = glm::mat4(1);
 
-	Model = glm::translate(Model, position);
+	ModelMatrix = glm::translate(ModelMatrix, position);
 
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 		std::cout << "Failed to initialize OpenGL context" << std::endl;
@@ -59,13 +60,8 @@ int main()
 
 	Shader shaderProgram("VertexShader.glsl", "FragmentShader.glsl");
 
-	VAO vao;
-	vao.Bind();
-	VBO vbo(vertices);
-	EBO ebo(indices);
-
-	//Mesh mesh(vertices, indices);
-	//mesh.LoadMesh();
+	Model model("box.obj", "src\\models\\");
+	model.InitModel();
 
 
 	while (!window->closed())
@@ -80,9 +76,8 @@ int main()
 
 		glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "Projection"), 1, GL_FALSE, glm::value_ptr(projectionMatrix));
 		glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "View"), 1, GL_FALSE, glm::value_ptr(view));
-		glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "Model"), 1, GL_FALSE, glm::value_ptr(Model));
+		glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "ModelMatrix"), 1, GL_FALSE, glm::value_ptr(ModelMatrix));
 
-		//mesh.RenderMesh();
 
 		window->update();
 	}
