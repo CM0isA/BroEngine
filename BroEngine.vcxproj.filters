@@ -66,6 +66,9 @@
     <ClCompile Include="src\core\importer\Material.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\core\importer\Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\graphics\window\Window.h">
@@ -120,6 +123,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\core\importer\Material.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\importer\Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

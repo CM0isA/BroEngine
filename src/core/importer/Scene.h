@@ -16,10 +16,10 @@ namespace broEngine {
 		class Scene
 		{
 		public:
-			Scene(std::vector<float> vertices, std::vector<GLuint> indices);
+			//Scene(std::vector<float> vertices, std::vector<GLuint> indices);
 
 		protected:
-			Assimp::Importer sceneImporter;
+			//Assimp::Importer sceneImporter;
 		};
 	}
 }

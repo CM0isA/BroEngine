@@ -16,9 +16,10 @@ using namespace importer;
 
 int main()
 {
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, true);
 
 
 
@@ -43,25 +44,25 @@ int main()
 		return -1;
 	}
 
-	std::vector<float> vertices = {
-		-0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f, // Lower left corner
-		0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f, // Lower right corner
-		0.0f, 0.5f * float(sqrt(3)) * 2 / 3, 0.0f, // Upper corner
-		-0.5f / 2, 0.5f * float(sqrt(3)) / 6, 0.0f, // Inner left
-		0.5f / 2, 0.5f * float(sqrt(3)) / 6, 0.0f, // Inner right
-		0.0f, -0.5f * float(sqrt(3)) / 3, 0.0f // Inner down
+	std::vector<Vertex> vertices = {
+	{ glm::vec3(-1.0f, 0.0f,  1.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2(0,0), glm::vec4(1.0f, 0.0f, 0.0f, 1.0f) },
+	{ glm::vec3(-1.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2(0,1), glm::vec4(0.0f, 1.0f, 0.0f, 1.0f) },
+	{ glm::vec3( 1.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2(1,1), glm::vec4(0.0f, 0.0f, 1.0f, 1.0f) },
+	{ glm::vec3( 1.0f, 0.0f,  1.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2(1,0), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f) }
 	};
 
 	std::vector<GLuint> indices = {
-		0,3,5,
-		3,2,4,
-		5,4,1
+		0,1,2,
+		0,2,3
 	};
+
+	Mesh modelFromData(vertices, indices);
+	modelFromData.UploadData();
 
 	Shader shaderProgram("VertexShader.glsl", "FragmentShader.glsl");
 
-	Model model("box.obj", "src\\models\\");
-	model.InitModel();
+	//Model model("box.obj", "src\\models\\");
+	//model.InitModel();
 
 
 	while (!window->closed())
@@ -78,9 +79,12 @@ int main()
 		glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "View"), 1, GL_FALSE, glm::value_ptr(view));
 		glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "ModelMatrix"), 1, GL_FALSE, glm::value_ptr(ModelMatrix));
 
-
+		//model.RenderModel();
+		modelFromData.RenderMesh();
 		window->update();
+		glGetError();
 	}
+	
 
 
 	//Terminate stuff

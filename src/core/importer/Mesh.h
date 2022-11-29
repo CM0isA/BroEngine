@@ -17,34 +17,32 @@ namespace broEngine {
 		class Mesh
 		{
 		public:
-			Mesh();
-			Mesh(std::vector<float> vertices, std::vector<GLuint> indices);
-			std::vector<float> m_vertices;
+			Mesh() {
+				m_localPosition = glm::vec3(0, 0, 0);
+				baseIndex = 0;
+				baseVertex = 0;
+				m_numIndices = 0;
+				m_numVertices = 0;
+				materialIndex = INVALID_MATERIAL;
+			};
+			Mesh(std::vector<Vertex> vertices, std::vector<GLuint> indices);
+
+			VAO meshVao;
+			std::vector<Vertex> m_vertices;
 			std::vector<GLuint> m_indices;
 			unsigned int m_numVertices;
 			unsigned int m_numIndices;
 			unsigned int baseVertex;
 			unsigned int baseIndex;
-
 			unsigned int materialIndex;
-			std::vector<glm::vec3> positions;
-			std::vector<glm::vec3> normals;
-			std::vector<glm::vec2> texCoords;
 			glm::vec3 m_localPosition;
 
-			VAO vao;
-
-			void LoadMesh();
-			void RenderMesh();
-
-		private:
-			void Clear();
-
-
 		public:
-			void InitMesh(const aiMesh* paiMesh);
-			void UploadData(const std::vector<glm::vec3>& positions, const std::vector<glm::vec3>& normals, const std::vector<glm::vec2>& texCoords);
-			void UploadData(const std::vector<float>& vertices, const std::vector<float>& indices);
+			//void InitMesh(const aiMesh* paiMesh);
+			//void UploadData(VAO& vao, std::vector<Vertex>& vertex, const std::vector<GLuint>& indices);
+			//void UploadData(VAO& vao, const std::vector<float>& vertices, const std::vector<GLuint>& indices);
+			void UploadData();
+			void RenderMesh();
 		};
 
 	}

@@ -7,14 +7,19 @@
 
 namespace broEngine {
 	namespace graphics {
+		struct Vertex {
+			glm::vec3 positions;
+			glm::vec3 normals;
+			glm::vec2 texCoordinates;
+			glm::vec4 color;
+		};
+
+
 		class VBO
 		{
 		public:
 			GLuint ID;
-			VBO();
-			VBO(std::vector<float> vertices);
-			VBO(const std::vector<glm::vec2>& vector2, glm::vec2 vec2);
-			VBO(const std::vector<glm::vec3>& positions, glm::vec3 vec3, bool one);
+			VBO(std::vector<Vertex> vertex);
 
 			void Bind();
 			void Unbind();

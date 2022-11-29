@@ -168,6 +168,7 @@
     <ClCompile Include="src\core\graphics\window\window_callbacks.cpp" />
     <ClCompile Include="src\core\graphics\buffres\VBO.cpp" />
     <ClCompile Include="src\core\graphics\buffres\VAO.cpp" />
+    <ClCompile Include="src\core\importer\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\importer\Material.h" />
@@ -188,6 +189,7 @@
     <ClInclude Include="src\core\utils\math_utils.h" />
     <ClInclude Include="src\core\graphics\buffres\VBO.h" />
     <ClInclude Include="src\core\graphics\buffres\VAO.h" />
+    <ClInclude Include="src\core\importer\Texture.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\core\graphics\shaders\FragmentShader.glsl" />
